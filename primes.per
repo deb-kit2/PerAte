@@ -1,39 +1,39 @@
 (for documentation of the number, read README.md and syntax.md)
 
 
-@000 gi (input a number to adress 000)
-@005 g=000 (copy from address 000 to 005, so that we can use 005 as a loop index variable)
-      / |2| (need to check only half of the numbers - sqrt operation is not yet supported)
-@001 = |2| (start a loop from 2)
+@000 gi 								(input a number to adress 000)
+@005 g=000 								(copy from address 000 to 005, so that we can use 005 as a loop index variable)
+      / |2| 							(need to check only half of the numbers - sqrt operation is not yet supported)
+@001 = |2| 								(start a loop from 2 for the divisor)
 {
 	@002 g=000
-		 g/001 (integer division can be used to our advantage)
-		 g*001 (integer-dividing and multiplying by a number is a check of divisibility)
-		 	(if the product and original number are equal, then divisible, otherwise not)
+		 g/001 							(integer division can be used to our advantage)
+		 g*001 							(integer-dividing and multiplying by a number is a check of divisibility)
+										(if the product and original number are equal, then divisible, otherwise not)
 	@003 g=000
-		 g-002 (find the value of original number minus the product, stored in 003)
+		 g-002							(find the value of original number minus the product, stored in 003)
 	{
-		@003 g/003	(if 003 is 0, skip it otherwise divide it by itself)
-				(what this does is set 003 to 1 if not divisible and 0 if divisible)
-		@100	(set the pointer to 100. since all addresses are initialized to 0, this immediately ends the loop)
-	} 		(this is a way to implement if's)
+		@003 g/003						(if 003 is 0, skip it otherwise divide it by itself)
+										(what this does is set 003 to 1 if not divisible and 0 if divisible)
+		@100							(set the pointer to 100. since all addresses are initialized to 0, this immediately ends the loop)
+	} 									(this is a way to implement if's)
 	@007 = |1|
-		 g-003  (set 007 to 1 and subtract 003 from it, i.e. invert 003)
-	{		(now, 007 is 1 if divisible and 0 if non divisible)
-		@004 + |1| (if 007 is 1, i.e. if divisible, increment it)
+		 g-003  						(set 007 to 1 and subtract 003 from it, i.e. invert 003)
+	{									(now, 007 is 1 if divisible and 0 if non divisible)
+		@004 + |1| 						(if 007 is 1, i.e. if divisible, increment it)
 		@100
 	}
-	@001 + |1| (increment the loop index variable)
-	@005 - |1| (decrement the number by 1)
-		   (now, since pointer is pointing to 005, when this value becomes 0, loop will stop)
-}		(this has the effect that the number is checked for divisibility from 2 to number/2, and 004 is non zero if any factors were found)
+	@001 + |1| 							(increment divisor)
+	@005 - |1| 							(decrement the number by 1)
+										(now, since pointer is pointing to 005, when this value becomes 0, loop will stop)
+}										(this has the effect that the number is checked for divisibility from 2 to number/2, and 004 is non zero if any factors were found)
 @004
 {
 	g/004
 	@100
-}      (this loop has the effect that if 004 is non zero, it is made 1, otherwise 0.)
+}      									(this loop has the effect that if 004 is non zero, it is made 1, otherwise 0.)
 @008 = |1|
-	 g-004  (intvert 004 and store it in 008)
+	 g-004  							(intvert 004 and store it in 008)
 
 @009 = 'p'
 @010 = 'r'
@@ -45,7 +45,7 @@
 @016 = 't'
 @017 = ' '
 
-(the following outputs the appropriate message - prime or not prime.)
+										(the following outputs the appropriate message - prime or not prime.)
 
 @008
 {
