@@ -1,5 +1,5 @@
-# perate
-Upcoming programming language -- Perate!  
+# PerAte
+Upcoming programming language -- PerAte!  
 It is a language created by me, and I intend to develop it into a more sophisticated language over time. See what is currently available and what is being worked on in features.md
 
 *usage - perate \<filename to run\>
